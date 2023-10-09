@@ -77,7 +77,5 @@ public class Employee {
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", employeeName=" + employeeName + ", salary=" + salary
 				+ ", address=" + address + ", designation=" + designation + ", primarySkill=" + primarySkill + "]";
-	}
-    
-    
+	}   
 }
