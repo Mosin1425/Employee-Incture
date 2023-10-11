@@ -1,0 +1,9 @@
+---
+Employee:
+- name : "Mosin Ansari"
+  department : "Product"
+  designation : "Trainee"
+- name : "Abc"
+  department : "Cloud"
+  designation : "ASE"
+--- 
