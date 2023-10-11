@@ -1,4 +1,5 @@
+---
 mosin:
-- {name: Mosin Ansari, address: Rajasthan, age: 12}
-designation: Developer
-id: '5'
+  - name: Mosin Ansari
+    address: Rajasthan
+    age: 12
