@@ -1,5 +1,4 @@
 ---
-mosin:
-  - name: Mosin Ansari
-    address: Rajasthan
-    designation : Trainee
+name: Mosin Ansari
+address: Rajasthan
+designation : Trainee
