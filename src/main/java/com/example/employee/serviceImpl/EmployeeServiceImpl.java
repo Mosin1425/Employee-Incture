@@ -156,7 +156,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	    String countSql = "SELECT COUNT(*) FROM (" + sql + ") AS countQuery";
 	    return jdbcTemplate.queryForObject(countSql, params, Integer.class);
 	}
-
 }
 //	@Override
 //	public String deleteEmployee(int id) {
