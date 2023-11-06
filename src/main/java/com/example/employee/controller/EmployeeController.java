@@ -3,11 +3,15 @@ package com.example.employee.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.employee.dto.FilterDto;
 import com.example.employee.entity.Employee;
 import com.example.employee.service.EmployeeService;
 
@@ -85,6 +89,35 @@ public class EmployeeController {
     			.body("Employee data deleted successfully");
     }
     
+    //Pagination and Sorting
+	@GetMapping("/pagination")
+	public List<Employee> findAllEmployees(@RequestParam(defaultValue = "1") int pageNumber,
+			@RequestParam(defaultValue = "5") int pageSize, @RequestParam(defaultValue = "employeeName") String sortBy) {
+		
+		Page<Employee> employeePage = employeeService.paginationAndSorting(pageNumber, pageSize, sortBy);
+		return employeePage.getContent();
+	}
+	
+	//Filter API
+	@PostMapping("/filter")
+	public ResponseEntity<List<Employee>> getEmployeeByFilter(@RequestBody List<FilterDto> filterDtoList){
+		return ResponseEntity.ok().body(employeeService.getEmployeeByFilter(filterDtoList));
+	}
+	
+	// Filter API with JDBC
+	@PostMapping("/filterByJdbc")
+	public ResponseEntity<List<Employee>> getEmployeeByFilterByJdbc(@RequestBody List<FilterDto> filterDtoList){
+		return ResponseEntity.ok().body(employeeService.getEmployeeByFilterByJdbc(filterDtoList));
+	}
+	
+	// Filter API with pagination 
+	@PostMapping("/filterAndPagination")
+	public ResponseEntity<List<Employee>> getEmployeeWithFilterAndPagination(@RequestBody List<FilterDto> filterDtoList, 
+			@RequestParam int pageNumber, @RequestParam int pageSize){
+		
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		return ResponseEntity.ok().body(employeeService.getEmployeeWithFilterAndPagination(filterDtoList, pageable).getContent());
+	}
     //Below method is handling exceptions using ResponseEntity
 //  @DeleteMapping("/deleteEmployee/{id}")
 //  public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable int id) {
