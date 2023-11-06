@@ -13,16 +13,23 @@ public class Employee {
     private String address;
     private String designation;
     private String primarySkill;
+    
+    @Transient
+    private String gender;
 
-    public Employee(String employeeName, int salary, String address, String designation, String primarySkill) {
-        this.employeeName = employeeName;
-        this.salary = salary;
-        this.address = address;
-        this.designation = designation;
-        this.primarySkill = primarySkill;
-    }
+    
 
-    public Employee() {
+    public Employee(String employeeName, int salary, String address, String designation,
+			String primarySkill, String gender) {
+		this.employeeName = employeeName;
+		this.salary = salary;
+		this.address = address;
+		this.designation = designation;
+		this.primarySkill = primarySkill;
+		this.gender = gender;
+	}
+
+	public Employee() {
     }
 
     public int getEmployeeId() {
@@ -72,6 +79,14 @@ public class Employee {
     public void setPrimarySkill(String primarySkill) {
         this.primarySkill = primarySkill;
     }
+    
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
 	@Override
 	public String toString() {
